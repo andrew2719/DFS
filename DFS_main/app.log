@@ -1,9 +1,1 @@
-2023-09-29 11:55:14,695 - INFO - Started server on port 8888
-2023-09-29 11:55:14,695 - INFO - Started connecting to peers
-2023-09-29 11:55:16,999 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
-2023-09-29 11:58:36,339 - INFO - Started server on port 8888
-2023-09-29 11:58:36,339 - INFO - Started connecting to peers
-2023-09-29 11:58:38,684 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
-2023-09-29 11:58:45,173 - INFO - Started server on port 8888
-2023-09-29 11:58:45,173 - INFO - Started connecting to peers
-2023-09-29 11:58:47,294 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
+

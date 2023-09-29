@@ -4,9 +4,10 @@ import os
 import json
 import sys
 from DFS_main.logger import logger
+import settings
 
 class Server:
-    def __init__(self, port, peers=[], save_path='./received_files'):
+    def __init__(self, port, peers=[], save_path=settings.RECIEVED_FILES):
         self.port = port
         self.peers = peers
         self.peer_connections = {}  # To store connection objects for peers
