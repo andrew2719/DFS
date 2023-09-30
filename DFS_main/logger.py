@@ -1,11 +1,13 @@
 import logging
-
+from settings import APP_LOG
 def setup_logger():
     logger = logging.getLogger('my_logger')
     logger.setLevel(logging.DEBUG)
 
+
+
     # File handler
-    file_handler = logging.FileHandler('app.log')
+    file_handler = logging.FileHandler(APP_LOG)
     file_format = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(file_format)
     logger.addHandler(file_handler)

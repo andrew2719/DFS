@@ -1,5 +1,5 @@
 import asyncio
-from Server import Server
+import Server.Server as Server
 
 
 asyncio.run(Server.main())

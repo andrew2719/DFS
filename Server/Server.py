@@ -5,9 +5,11 @@ import json
 import sys
 from DFS_main.logger import logger
 import settings
+from Handler import Handler
+
 
 class Server:
-    def __init__(self, port, peers=[], save_path=settings.RECIEVED_FILES):
+    def __init__(self, port, peers=[], save_path=settings.RECEIVED_FILES):
         self.port = port
         self.peers = peers
         self.peer_connections = {}  # To store connection objects for peers
@@ -16,16 +18,20 @@ class Server:
         if not os.path.exists(save_path):
             os.makedirs(save_path)
 
-
     async def handle_inbound(self, reader, writer):
         addr = writer.get_extra_info('peername')[0]
         logger.info(f"Node {self.port} received connection from {addr}")
         writer.write(f"you are connected to {self.port}".encode('utf-8'))
         await writer.drain()
 
-        request = await reader.read(1024)
+        request = await reader.read(1024) # the type of request , size of the file, the name of the file, later after making required arrangements the ccontent of the file is sent from the client
+        handler = Handler.Handle(reader,writer,request)
 
+        handle = await handler.Handler() # sends back true or false stating the success
 
+        writer.write(handle)
+
+        await writer.drain()
     async def start_server(self):
         server = await asyncio.start_server(self.handle_inbound, '0.0.0.0', self.port)
         logger.info('Started server on port {}'.format(self.port))
