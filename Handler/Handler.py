@@ -5,14 +5,18 @@ import json
 from DFS_main.logger import logger
 import JsonHandler
 from settings import FREE_SPACE
+from FileManagement import FileObjector
 
 
 
 class Handle:
+    # this class is used to handle the request from the other nodes
+    # it just stores the data to the system (only a single piece of some data is sent from other node(inbound) for storing purposes)
     def __init__(self, reader, writer, request):
         self.reader = reader
         self.writer = writer
         self.request = request
+        self.file_object = None
         '''
         request  = {
             "type" : "upload/download",
@@ -25,10 +29,12 @@ class Handle:
         self.request = await JsonHandler.convert_json_to_dict(self.request)
 
     async def acknowledgment(self, bool,extras = None):
+
         response = {
             'status':bool,
             'extras':extras
         }
+
         return JsonHandler.convert_dict_to_json(response)
     async def Handler(self):
         await self.conversion()
@@ -41,6 +47,7 @@ class Handle:
             return self.acknowledgment(False)
 
         if self.request["type"] == "upload":
+            self.file_object = FileObjector.FileObject(size)
             return await self.HandleUpload()
 
         elif self.request["type"] == "download":
@@ -48,7 +55,15 @@ class Handle:
 
 
     async def HandleUpload(self):
-        pass
+        size = 0
+        # reading the file 1024 bytes at a time
+        while size < self.request["size"]:
+            data = await self.reader.read(1024)
+            size += len(data)
+            self.file_object.add_data(data)
 
+        #send the hash to the client
+
+        hash = self.file_object.file_hash.hexdigest() #string of hash
 
 

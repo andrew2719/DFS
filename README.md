@@ -20,7 +20,15 @@ This Distributed File System Using Blockchain contains several packages that hel
 4. Handler
    - this handles the incoming requests from the server
    - the server send the data to the handler and handler handles as required for the programe
-5. FileManager
+5. FileManagement
    - this is used to handle the file
    - processing the data,making into chunks, maintaing the file structure(creating tables for storing)
    - and later stored in the DFS_main for easy access
+
+encode and decode works only for the string or the json.dumps()
+
+encode means converting the "string" to bytes
+decode means converting the bytes to "string"
+
+from string to dict we use json.loads()
+from dict to string we use json.dumps()

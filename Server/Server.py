@@ -18,10 +18,15 @@ class Server:
         if not os.path.exists(save_path):
             os.makedirs(save_path)
 
+    async def write_(self,writer,data):
+        writer.write(data)
+        await writer.drain()
+
+
     async def handle_inbound(self, reader, writer):
         addr = writer.get_extra_info('peername')[0]
         logger.info(f"Node {self.port} received connection from {addr}")
-        writer.write(f"you are connected to {self.port}".encode('utf-8'))
+        writer.write(f"you are connected to {self.port}".encode())
         await writer.drain()
 
         request = await reader.read(1024) # the type of request , size of the file, the name of the file, later after making required arrangements the ccontent of the file is sent from the client
@@ -32,6 +37,8 @@ class Server:
         writer.write(handle)
 
         await writer.drain()
+
+
     async def start_server(self):
         server = await asyncio.start_server(self.handle_inbound, '0.0.0.0', self.port)
         logger.info('Started server on port {}'.format(self.port))

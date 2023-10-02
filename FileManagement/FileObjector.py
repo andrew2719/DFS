@@ -3,10 +3,10 @@ import hashlib
 
 class FileObject:
 
-    def __init__(self):
+    def __init__(self,file_size):
         self.file_hash = hashlib.sha256()
         self.file_data = bytearray()
-        self.file_size = 0
+        self.file_size = file_size
         self.sent_from = None
         self.storage_path = None
 
