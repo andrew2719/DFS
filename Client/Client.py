@@ -115,11 +115,42 @@ class Client:
         table_len = len(table)
 
         # send the table to the serveras 1024 bytes at a time
-        for i in range(0,table_len,1024):
-            c_logger.info(f'sending {i} to {i+1024}')
-            await self.write_(table[i:i+1024])
-            if (i+1024 >= table_len) or (not table[i+1024:]):
-                break
+        # for i in range(0,table_len,1024):
+        #     c_logger.info(f'sending {i} to {i+1024}')
+        #     await self.write_(table[i:i+1024])
+        #     if (i+1024 >= table_len) or (not table[i+1024:]):
+        #         break
+        total_bytes_sent = 0
+
+        # for i in range(0, table_len, 1024):
+        #     start_idx = i
+        #     end_idx = min(i + 1024, table_len)
+        #     chunk_size = end_idx - start_idx
+        #
+        #     await self.write_(table[start_idx:end_idx])
+        #
+        #     total_bytes_sent += chunk_size
+        #     c_logger.info(
+        #         f'Sending bytes {start_idx} to {end_idx}. Chunk size: {chunk_size}. Total bytes sent: {total_bytes_sent}')
+        #
+        #     if end_idx >= table_len or not table[end_idx:]:
+        #         break
+
+        delimiter = b"@@EOM@@"
+        table_with_delimiter = table + delimiter
+        table_len = len(table_with_delimiter)
+
+        buffer = table_with_delimiter
+        chunk_size = 1024
+
+        while buffer:
+            chunk = buffer[:chunk_size]
+            buffer = buffer[chunk_size:]
+
+            await self.write_(chunk)
+
+            c_logger.info(f'Sent chunk of size: {len(chunk)}. Remaining data length: {len(buffer)}')
+
         c_logger.info('table sent')
         # await self.write_(self.writer, "@@EOM@@")
 

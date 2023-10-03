@@ -427,3 +427,201 @@
 2023-10-03 23:54:10,492 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
 2023-10-03 23:54:10,492 - INFO - response hash table received
 2023-10-03 23:54:10,492 - INFO - Hashes are same
+2023-10-04 00:00:18,756 - INFO - you are connected to 8888
+2023-10-04 00:00:18,756 - INFO - Connected to the server
+2023-10-04 00:00:21,102 - INFO - File selected: C:/Users/andre/OneDrive/Pictures/Screenshots/Screenshot 2023-09-30 121957.png
+2023-10-04 00:00:21,102 - INFO - preparing data...
+2023-10-04 00:00:21,102 - INFO - reading file...
+2023-10-04 00:00:21,102 - INFO - file read
+2023-10-04 00:00:21,102 - INFO - preparing meta data...
+2023-10-04 00:00:21,102 - INFO - meta data prepared
+2023-10-04 00:00:21,102 - INFO - preparing look up table...
+2023-10-04 00:00:21,102 - INFO - {0: '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', 1: 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', 2: 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', 3: '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-04 00:00:21,116 - INFO - data prepared
+2023-10-04 00:00:21,116 - INFO - meta data response: {"NODE": "SELF", "TYPE": "UPLOAD", "SIZE": 62123}
+2023-10-04 00:00:21,116 - INFO - Sending bytes 0 to 1024. Chunk size: 1024. Total bytes sent: 1024
+2023-10-04 00:00:21,116 - INFO - Sending bytes 1024 to 2048. Chunk size: 1024. Total bytes sent: 2048
+2023-10-04 00:00:21,116 - INFO - Sending bytes 2048 to 3072. Chunk size: 1024. Total bytes sent: 3072
+2023-10-04 00:00:21,116 - INFO - Sending bytes 3072 to 4096. Chunk size: 1024. Total bytes sent: 4096
+2023-10-04 00:00:21,116 - INFO - Sending bytes 4096 to 5120. Chunk size: 1024. Total bytes sent: 5120
+2023-10-04 00:00:21,116 - INFO - Sending bytes 5120 to 6144. Chunk size: 1024. Total bytes sent: 6144
+2023-10-04 00:00:21,116 - INFO - Sending bytes 6144 to 7168. Chunk size: 1024. Total bytes sent: 7168
+2023-10-04 00:00:21,116 - INFO - Sending bytes 7168 to 8192. Chunk size: 1024. Total bytes sent: 8192
+2023-10-04 00:00:21,116 - INFO - Sending bytes 8192 to 9216. Chunk size: 1024. Total bytes sent: 9216
+2023-10-04 00:00:21,116 - INFO - Sending bytes 9216 to 10240. Chunk size: 1024. Total bytes sent: 10240
+2023-10-04 00:00:21,116 - INFO - Sending bytes 10240 to 11264. Chunk size: 1024. Total bytes sent: 11264
+2023-10-04 00:00:21,116 - INFO - Sending bytes 11264 to 12288. Chunk size: 1024. Total bytes sent: 12288
+2023-10-04 00:00:21,116 - INFO - Sending bytes 12288 to 13312. Chunk size: 1024. Total bytes sent: 13312
+2023-10-04 00:00:21,116 - INFO - Sending bytes 13312 to 14336. Chunk size: 1024. Total bytes sent: 14336
+2023-10-04 00:00:21,122 - INFO - Sending bytes 14336 to 15360. Chunk size: 1024. Total bytes sent: 15360
+2023-10-04 00:00:21,122 - INFO - Sending bytes 15360 to 16384. Chunk size: 1024. Total bytes sent: 16384
+2023-10-04 00:00:21,122 - INFO - Sending bytes 16384 to 17408. Chunk size: 1024. Total bytes sent: 17408
+2023-10-04 00:00:21,122 - INFO - Sending bytes 17408 to 18432. Chunk size: 1024. Total bytes sent: 18432
+2023-10-04 00:00:21,122 - INFO - Sending bytes 18432 to 19456. Chunk size: 1024. Total bytes sent: 19456
+2023-10-04 00:00:21,122 - INFO - Sending bytes 19456 to 20480. Chunk size: 1024. Total bytes sent: 20480
+2023-10-04 00:00:21,122 - INFO - Sending bytes 20480 to 21504. Chunk size: 1024. Total bytes sent: 21504
+2023-10-04 00:00:21,122 - INFO - Sending bytes 21504 to 22528. Chunk size: 1024. Total bytes sent: 22528
+2023-10-04 00:00:21,122 - INFO - Sending bytes 22528 to 23552. Chunk size: 1024. Total bytes sent: 23552
+2023-10-04 00:00:21,122 - INFO - Sending bytes 23552 to 24576. Chunk size: 1024. Total bytes sent: 24576
+2023-10-04 00:00:21,122 - INFO - Sending bytes 24576 to 25600. Chunk size: 1024. Total bytes sent: 25600
+2023-10-04 00:00:21,122 - INFO - Sending bytes 25600 to 26624. Chunk size: 1024. Total bytes sent: 26624
+2023-10-04 00:00:21,122 - INFO - Sending bytes 26624 to 27648. Chunk size: 1024. Total bytes sent: 27648
+2023-10-04 00:00:21,122 - INFO - Sending bytes 27648 to 28672. Chunk size: 1024. Total bytes sent: 28672
+2023-10-04 00:00:21,122 - INFO - Sending bytes 28672 to 29696. Chunk size: 1024. Total bytes sent: 29696
+2023-10-04 00:00:21,122 - INFO - Sending bytes 29696 to 30720. Chunk size: 1024. Total bytes sent: 30720
+2023-10-04 00:00:21,122 - INFO - Sending bytes 30720 to 31744. Chunk size: 1024. Total bytes sent: 31744
+2023-10-04 00:00:21,122 - INFO - Sending bytes 31744 to 32768. Chunk size: 1024. Total bytes sent: 32768
+2023-10-04 00:00:21,122 - INFO - Sending bytes 32768 to 33792. Chunk size: 1024. Total bytes sent: 33792
+2023-10-04 00:00:21,122 - INFO - Sending bytes 33792 to 34816. Chunk size: 1024. Total bytes sent: 34816
+2023-10-04 00:00:21,122 - INFO - Sending bytes 34816 to 35840. Chunk size: 1024. Total bytes sent: 35840
+2023-10-04 00:00:21,122 - INFO - Sending bytes 35840 to 36864. Chunk size: 1024. Total bytes sent: 36864
+2023-10-04 00:00:21,122 - INFO - Sending bytes 36864 to 37888. Chunk size: 1024. Total bytes sent: 37888
+2023-10-04 00:00:21,122 - INFO - Sending bytes 37888 to 38912. Chunk size: 1024. Total bytes sent: 38912
+2023-10-04 00:00:21,122 - INFO - Sending bytes 38912 to 39936. Chunk size: 1024. Total bytes sent: 39936
+2023-10-04 00:00:21,122 - INFO - Sending bytes 39936 to 40960. Chunk size: 1024. Total bytes sent: 40960
+2023-10-04 00:00:21,122 - INFO - Sending bytes 40960 to 41984. Chunk size: 1024. Total bytes sent: 41984
+2023-10-04 00:00:21,122 - INFO - Sending bytes 41984 to 43008. Chunk size: 1024. Total bytes sent: 43008
+2023-10-04 00:00:21,122 - INFO - Sending bytes 43008 to 44032. Chunk size: 1024. Total bytes sent: 44032
+2023-10-04 00:00:21,122 - INFO - Sending bytes 44032 to 45056. Chunk size: 1024. Total bytes sent: 45056
+2023-10-04 00:00:21,122 - INFO - Sending bytes 45056 to 46080. Chunk size: 1024. Total bytes sent: 46080
+2023-10-04 00:00:21,122 - INFO - Sending bytes 46080 to 47104. Chunk size: 1024. Total bytes sent: 47104
+2023-10-04 00:00:21,122 - INFO - Sending bytes 47104 to 48128. Chunk size: 1024. Total bytes sent: 48128
+2023-10-04 00:00:21,122 - INFO - Sending bytes 48128 to 49152. Chunk size: 1024. Total bytes sent: 49152
+2023-10-04 00:00:21,122 - INFO - Sending bytes 49152 to 50176. Chunk size: 1024. Total bytes sent: 50176
+2023-10-04 00:00:21,122 - INFO - Sending bytes 50176 to 51200. Chunk size: 1024. Total bytes sent: 51200
+2023-10-04 00:00:21,122 - INFO - Sending bytes 51200 to 52224. Chunk size: 1024. Total bytes sent: 52224
+2023-10-04 00:00:21,122 - INFO - Sending bytes 52224 to 53248. Chunk size: 1024. Total bytes sent: 53248
+2023-10-04 00:00:21,122 - INFO - Sending bytes 53248 to 54272. Chunk size: 1024. Total bytes sent: 54272
+2023-10-04 00:00:21,122 - INFO - Sending bytes 54272 to 55296. Chunk size: 1024. Total bytes sent: 55296
+2023-10-04 00:00:21,122 - INFO - Sending bytes 55296 to 56320. Chunk size: 1024. Total bytes sent: 56320
+2023-10-04 00:00:21,122 - INFO - Sending bytes 56320 to 57344. Chunk size: 1024. Total bytes sent: 57344
+2023-10-04 00:00:21,122 - INFO - Sending bytes 57344 to 58368. Chunk size: 1024. Total bytes sent: 58368
+2023-10-04 00:00:21,122 - INFO - Sending bytes 58368 to 59392. Chunk size: 1024. Total bytes sent: 59392
+2023-10-04 00:00:21,122 - INFO - Sending bytes 59392 to 60416. Chunk size: 1024. Total bytes sent: 60416
+2023-10-04 00:00:21,122 - INFO - Sending bytes 60416 to 61440. Chunk size: 1024. Total bytes sent: 61440
+2023-10-04 00:00:21,122 - INFO - Sending bytes 61440 to 62464. Chunk size: 1024. Total bytes sent: 62464
+2023-10-04 00:00:21,122 - INFO - Sending bytes 62464 to 63488. Chunk size: 1024. Total bytes sent: 63488
+2023-10-04 00:00:21,122 - INFO - Sending bytes 63488 to 64512. Chunk size: 1024. Total bytes sent: 64512
+2023-10-04 00:00:21,122 - INFO - Sending bytes 64512 to 65536. Chunk size: 1024. Total bytes sent: 65536
+2023-10-04 00:00:21,122 - INFO - Sending bytes 65536 to 66560. Chunk size: 1024. Total bytes sent: 66560
+2023-10-04 00:00:21,122 - INFO - Sending bytes 66560 to 67584. Chunk size: 1024. Total bytes sent: 67584
+2023-10-04 00:00:21,122 - INFO - Sending bytes 67584 to 68608. Chunk size: 1024. Total bytes sent: 68608
+2023-10-04 00:00:21,122 - INFO - Sending bytes 68608 to 69632. Chunk size: 1024. Total bytes sent: 69632
+2023-10-04 00:00:21,122 - INFO - Sending bytes 69632 to 70656. Chunk size: 1024. Total bytes sent: 70656
+2023-10-04 00:00:21,122 - INFO - Sending bytes 70656 to 71680. Chunk size: 1024. Total bytes sent: 71680
+2023-10-04 00:00:21,122 - INFO - Sending bytes 71680 to 72704. Chunk size: 1024. Total bytes sent: 72704
+2023-10-04 00:00:21,122 - INFO - Sending bytes 72704 to 73728. Chunk size: 1024. Total bytes sent: 73728
+2023-10-04 00:00:21,122 - INFO - Sending bytes 73728 to 74752. Chunk size: 1024. Total bytes sent: 74752
+2023-10-04 00:00:21,122 - INFO - Sending bytes 74752 to 75776. Chunk size: 1024. Total bytes sent: 75776
+2023-10-04 00:00:21,122 - INFO - Sending bytes 75776 to 76800. Chunk size: 1024. Total bytes sent: 76800
+2023-10-04 00:00:21,122 - INFO - Sending bytes 76800 to 77824. Chunk size: 1024. Total bytes sent: 77824
+2023-10-04 00:00:21,122 - INFO - Sending bytes 77824 to 78848. Chunk size: 1024. Total bytes sent: 78848
+2023-10-04 00:00:21,122 - INFO - Sending bytes 78848 to 79872. Chunk size: 1024. Total bytes sent: 79872
+2023-10-04 00:00:21,122 - INFO - Sending bytes 79872 to 80896. Chunk size: 1024. Total bytes sent: 80896
+2023-10-04 00:00:21,122 - INFO - Sending bytes 80896 to 81920. Chunk size: 1024. Total bytes sent: 81920
+2023-10-04 00:00:21,122 - INFO - Sending bytes 81920 to 82944. Chunk size: 1024. Total bytes sent: 82944
+2023-10-04 00:00:21,122 - INFO - Sending bytes 82944 to 83139. Chunk size: 195. Total bytes sent: 83139
+2023-10-04 00:00:21,122 - INFO - table sent
+2023-10-04 00:00:21,122 - INFO - waiting for response hash table
+2023-10-04 00:00:21,132 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-04 00:00:21,132 - INFO - response hash table received
+2023-10-04 00:00:21,132 - INFO - Hashes are same
+2023-10-04 00:11:44,182 - INFO - you are connected to 8888
+2023-10-04 00:11:44,182 - INFO - Connected to the server
+2023-10-04 00:11:46,102 - INFO - File selected: C:/Users/andre/OneDrive/Pictures/Screenshots/Screenshot 2023-09-30 121957.png
+2023-10-04 00:11:46,102 - INFO - preparing data...
+2023-10-04 00:11:46,105 - INFO - reading file...
+2023-10-04 00:11:46,105 - INFO - file read
+2023-10-04 00:11:46,105 - INFO - preparing meta data...
+2023-10-04 00:11:46,105 - INFO - meta data prepared
+2023-10-04 00:11:46,105 - INFO - preparing look up table...
+2023-10-04 00:11:46,105 - INFO - {0: '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', 1: 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', 2: 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', 3: '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-04 00:11:46,112 - INFO - data prepared
+2023-10-04 00:11:46,112 - INFO - meta data response: {"NODE": "SELF", "TYPE": "UPLOAD", "SIZE": 62123}
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 82122
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 81098
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 80074
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 79050
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 78026
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 77002
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 75978
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 74954
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 73930
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 72906
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 71882
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 70858
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 69834
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 68810
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 67786
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 66762
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 65738
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 64714
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 63690
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 62666
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 61642
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 60618
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 59594
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 58570
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 57546
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 56522
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 55498
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 54474
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 53450
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 52426
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 51402
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 50378
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 49354
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 48330
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 47306
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 46282
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 45258
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 44234
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 43210
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 42186
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 41162
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 40138
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 39114
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 38090
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 37066
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 36042
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 35018
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 33994
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 32970
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 31946
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 30922
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 29898
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 28874
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 27850
+2023-10-04 00:11:46,112 - INFO - Sent chunk of size: 1024. Remaining data length: 26826
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 25802
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 24778
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 23754
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 22730
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 21706
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 20682
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 19658
+2023-10-04 00:11:46,121 - INFO - Sent chunk of size: 1024. Remaining data length: 18634
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 17610
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 16586
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 15562
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 14538
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 13514
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 12490
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 11466
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 10442
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 9418
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 8394
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 7370
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 6346
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 5322
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 4298
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 3274
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 2250
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 1226
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 1024. Remaining data length: 202
+2023-10-04 00:11:46,123 - INFO - Sent chunk of size: 202. Remaining data length: 0
+2023-10-04 00:11:46,123 - INFO - table sent
+2023-10-04 00:11:46,123 - INFO - waiting for response hash table
+2023-10-04 00:11:46,123 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-04 00:11:46,123 - INFO - response hash table received
+2023-10-04 00:11:46,123 - INFO - Hashes are same
