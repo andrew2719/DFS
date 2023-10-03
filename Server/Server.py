@@ -6,6 +6,7 @@ import sys
 from DFS_main.logger import logger
 import settings
 from Handler import Handler
+from Handler import SelfHandler
 
 
 class Server:
@@ -30,13 +31,26 @@ class Server:
         await writer.drain()
 
         request = await reader.read(1024) # the type of request , size of the file, the name of the file, later after making required arrangements the ccontent of the file is sent from the client
-        handler = Handler.Handle(reader,writer,request)
+        request = json.loads(request.decode())
 
-        handle = await handler.Handler() # sends back true or false stating the success
+        if request["NODE"] == "SELF":
 
-        writer.write(handle)
+            logger.info(f'request from the client {request}')
 
-        await writer.drain()
+            ask = {"status":True,"request":request}
+            await self.write_(writer,json.dumps(request).encode())
+            self_handler = SelfHandler.SelfHandle(reader,writer,request,self.peer_connections)
+            read_look_up = await self_handler.read_look_up_table()
+
+        else:
+
+            handler = Handler.Handle(reader,writer,request)
+
+            handle = await handler.Handler() # sends back true or false stating the success
+
+            writer.write(handle)
+
+            await writer.drain()
 
 
     async def start_server(self):

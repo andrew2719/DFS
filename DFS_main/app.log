@@ -1,0 +1,51 @@
+2023-10-03 23:37:31,481 - INFO - Started server on port 8888
+2023-10-03 23:37:31,482 - INFO - Started connecting to peers
+2023-10-03 23:37:34,233 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-03 23:37:36,673 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-03 23:37:36,673 - INFO - reading the table
+2023-10-03 23:37:52,513 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 121] The semaphore timeout period has expired
+2023-10-03 23:38:53,251 - INFO - Started server on port 8888
+2023-10-03 23:38:53,251 - INFO - Started connecting to peers
+2023-10-03 23:38:55,133 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-03 23:38:57,133 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-03 23:38:57,133 - INFO - reading the table
+2023-10-03 23:40:08,080 - INFO - Started server on port 8888
+2023-10-03 23:40:08,080 - INFO - Started connecting to peers
+2023-10-03 23:40:09,443 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-03 23:40:11,143 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-03 23:40:11,143 - INFO - reading the table
+2023-10-03 23:40:11,163 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-03 23:40:11,163 - INFO - b'{"0": "1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b", "1": "b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117", "2": "f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a", "3": "89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8"}'
+2023-10-03 23:43:41,121 - INFO - Started server on port 8888
+2023-10-03 23:43:41,121 - INFO - Started connecting to peers
+2023-10-03 23:43:42,801 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-03 23:43:44,611 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-03 23:43:44,611 - INFO - reading the table
+2023-10-03 23:43:44,621 - INFO - table read, length of the table is : 4
+2023-10-03 23:43:44,621 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-03 23:43:44,621 - INFO - b'{"0": "1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b", "1": "b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117", "2": "f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a", "3": "89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8"}'
+2023-10-03 23:45:45,680 - INFO - Started server on port 8888
+2023-10-03 23:45:45,681 - INFO - Started connecting to peers
+2023-10-03 23:46:06,702 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 121] The semaphore timeout period has expired
+2023-10-03 23:46:42,638 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-03 23:46:45,361 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-03 23:46:45,362 - INFO - reading the table
+2023-10-03 23:52:21,652 - INFO - Started server on port 8888
+2023-10-03 23:52:21,653 - INFO - Started connecting to peers
+2023-10-03 23:52:25,262 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-03 23:52:27,328 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-03 23:52:27,328 - INFO - reading the table
+2023-10-03 23:52:27,332 - INFO - table read, length of the table is : 4
+2023-10-03 23:52:27,332 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-03 23:52:27,332 - INFO - b'{"0": "1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b", "1": "b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117", "2": "f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a", "3": "89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8"}'
+2023-10-03 23:52:27,342 - INFO - True
+2023-10-03 23:54:07,428 - INFO - Started server on port 8888
+2023-10-03 23:54:07,429 - INFO - Started connecting to peers
+2023-10-03 23:54:08,743 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-03 23:54:10,477 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-03 23:54:10,477 - INFO - reading the table
+2023-10-03 23:54:10,492 - INFO - table read, length of the table is : 4
+2023-10-03 23:54:10,492 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-03 23:54:10,492 - INFO - b'{"0": "1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b", "1": "b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117", "2": "f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a", "3": "89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8"}'
+2023-10-03 23:54:10,492 - INFO - True
+2023-10-03 23:54:28,474 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 121] The semaphore timeout period has expired

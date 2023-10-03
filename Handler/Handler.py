@@ -3,10 +3,9 @@ import aiofiles
 import os
 import json
 from DFS_main.logger import logger
-import JsonHandler
+from . import JsonHandler
 from settings import FREE_SPACE
 from FileManagement import FileObjector
-
 
 
 class Handle:

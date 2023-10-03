@@ -1,9 +1,11 @@
 import logging
 from settings import CLIENT_LOG
 
-def setup_client_logger():
-    logger = logging.getLogger('client_logger')  # Note the change in logger name
+def setup_logger():
+    logger = logging.getLogger('client_logger')
     logger.setLevel(logging.DEBUG)
+
+
 
     # File handler
     file_handler = logging.FileHandler(CLIENT_LOG)
@@ -19,4 +21,5 @@ def setup_client_logger():
 
     return logger
 
-client_logger = setup_client_logger()
+client_logger = setup_logger()
+
