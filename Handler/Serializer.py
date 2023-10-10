@@ -1,25 +1,45 @@
 
-# converting binary to base64 and decoding it back to the base64
-# what happens is that the binary data is converted to base64
-# ex :
-# >>> a = b'12'
-# >>> import base64
-# >>> b = base64.b64encode(a)
-# >>> print(b)
-# b'MTI='
-# >>> b.decode()
-# 'MTI='
+# ```
+# >>> str(x)
+# "b'hello this is a string'"
+# >>> str(x)[2:len(str(x))-1].encode()
+# b'hello this is a string'
+# ```
+#
+# ```
+# >>> e
+# bytearray(b'hello this is a string')
+# >>> base64.b64encode(e)
+# b'aGVsbG8gdGhpcyBpcyBhIHN0cmluZw=='
+# >>> y = base64.b64encode(e).decode()
+# >>> y
+# 'aGVsbG8gdGhpcyBpcyBhIHN0cmluZw=='
+# >>> base64.b64decode(y.encode())
+# b'hello this is a string'
+# ```
 
-# so again if we want to get the original binary data we need to convert encode and then decode with base64
-# >>> b
-# 'MTI='
-# >>> base64.b64decode(b.encode())
-# b'12'
-# any type of data can be encoded and decoded with base64
 import base64
 
-async def encode_data(data): # this gives the some MTI= kind of data, decode for taking that b'MTI=' to MTI=
-    return base64.b64encode(data).decode()
+class b_64:
+    # only for the binary data
+    def __init__(self,data):
+        self.data = data
+    async def encode_data(self): # this gives the some MTI= kind of data, decode for taking that b'MTI=' to MTI=
+        return base64.b64encode(self.data).decode()
 
-async def decode_data(data): # this gives the original binary data, encode for taking that MTI= to b'MTI='
-    return base64.b64decode(data.encode())
+    async def decode_data(self): # this gives the original binary data, encode for taking that MTI= to b'MTI='
+        return base64.b64decode(self.data.encode())
+
+class b_object:
+
+    def __init__(self,data):
+        self.data = data
+
+    async def encode_data(self):
+        return str(self.data).encode()
+
+    async def decode_data(self):
+        return eval(self.data.decode())
+
+    async def stringify_encode_bin(self):
+        return str(self.data)[2:len(str(self.data))-1].encode()

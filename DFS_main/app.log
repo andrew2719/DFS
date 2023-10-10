@@ -68,3 +68,70 @@
 2023-10-04 00:11:46,123 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
 2023-10-04 00:11:46,123 - INFO - b'{"0": "1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b", "1": "b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117", "2": "f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a", "3": "89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8"}'
 2023-10-04 00:11:46,123 - INFO - True
+2023-10-04 11:19:50,110 - INFO - Started server on port 8888
+2023-10-04 11:19:50,110 - INFO - Started connecting to peers
+2023-10-04 11:19:52,804 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-04 11:19:53,414 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
+2023-10-04 11:19:54,650 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 8562}
+2023-10-04 11:19:54,650 - INFO - reading the table
+2023-10-04 11:19:54,650 - INFO - table read, length of the table is : 4
+2023-10-04 11:19:54,650 - INFO - {'0': '1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b', '1': 'c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae', '2': '672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d', '3': 'a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309'}
+2023-10-04 11:19:54,650 - INFO - b'{"0": "1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b", "1": "c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae", "2": "672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d", "3": "a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309"}'
+2023-10-04 11:19:54,650 - INFO - True
+2023-10-04 11:33:03,054 - INFO - Started server on port 8888
+2023-10-04 11:33:03,054 - INFO - Started connecting to peers
+2023-10-04 11:33:06,356 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-04 11:33:07,419 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
+2023-10-04 11:33:08,263 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 4938}
+2023-10-04 11:33:08,263 - INFO - reading the table
+2023-10-04 11:33:08,263 - INFO - table read, length of the table is : 4
+2023-10-04 11:33:08,263 - INFO - {'0': '2fbda3f84e66fc81db2b5a13698c57643afc4ce0802542cf31784a22c854f911', '1': 'ac62c876f2be9b9e144fedfadee1ca5a21a587745679cbeb2d9cbe063388cf7b', '2': '27707d4fa8b09c8f1032481bef578bba095f161abceb4ec51a54e6c0fee3f873', '3': 'c3bcff60fce846fe962148c3d93865f9df086aeb42e18cdaa35dd5ad49dc5aed'}
+2023-10-04 11:33:08,263 - INFO - b'{"0": "2fbda3f84e66fc81db2b5a13698c57643afc4ce0802542cf31784a22c854f911", "1": "ac62c876f2be9b9e144fedfadee1ca5a21a587745679cbeb2d9cbe063388cf7b", "2": "27707d4fa8b09c8f1032481bef578bba095f161abceb4ec51a54e6c0fee3f873", "3": "c3bcff60fce846fe962148c3d93865f9df086aeb42e18cdaa35dd5ad49dc5aed"}'
+2023-10-04 11:33:08,263 - INFO - True
+2023-10-04 11:33:21,302 - INFO - Started server on port 8888
+2023-10-04 11:33:21,302 - INFO - Started connecting to peers
+2023-10-04 11:33:22,177 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-04 11:33:23,396 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
+2023-10-04 11:33:23,989 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 8562}
+2023-10-04 11:33:23,989 - INFO - reading the table
+2023-10-04 11:33:23,989 - INFO - table read, length of the table is : 4
+2023-10-04 11:33:24,005 - INFO - {'0': '1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b', '1': 'c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae', '2': '672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d', '3': 'a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309'}
+2023-10-04 11:33:24,005 - INFO - b'{"0": "1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b", "1": "c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae", "2": "672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d", "3": "a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309"}'
+2023-10-04 11:33:24,005 - INFO - True
+2023-10-04 11:39:30,063 - INFO - Started server on port 8888
+2023-10-04 11:39:30,063 - INFO - Started connecting to peers
+2023-10-04 11:39:31,582 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-04 11:39:33,658 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
+2023-10-04 11:39:33,735 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 62123}
+2023-10-04 11:39:33,736 - INFO - reading the table
+2023-10-04 11:39:33,749 - INFO - table read, length of the table is : 4
+2023-10-04 11:39:33,750 - INFO - {'0': '1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b', '1': 'b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117', '2': 'f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a', '3': '89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8'}
+2023-10-04 11:39:33,750 - INFO - b'{"0": "1874c112eb9e6d7eb21dfd4deb9784fc0abc227c81369ea71a2d17f59ddffb6b", "1": "b4fb5e2eeb632a7c197b0b55e1a0b4da0a684a6979c25b6f41918f89e4251117", "2": "f9251222de59780f0db546114651fa98194314e1136076fdbcce35e3827d366a", "3": "89dbd209fc9a4706c4c838f546f562c7e612d35f4a31ef4f3dd52fb314e527b8"}'
+2023-10-04 11:39:33,751 - INFO - True
+2023-10-04 11:58:11,662 - INFO - Started server on port 8888
+2023-10-04 11:58:11,662 - INFO - Started connecting to peers
+2023-10-04 11:58:13,053 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-04 11:58:13,819 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
+2023-10-04 11:58:15,957 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 4938}
+2023-10-04 11:58:15,957 - INFO - reading the table
+2023-10-04 11:58:15,957 - INFO - table read, length of the table is : 4
+2023-10-04 11:58:15,957 - INFO - {'0': '2fbda3f84e66fc81db2b5a13698c57643afc4ce0802542cf31784a22c854f911', '1': 'ac62c876f2be9b9e144fedfadee1ca5a21a587745679cbeb2d9cbe063388cf7b', '2': '27707d4fa8b09c8f1032481bef578bba095f161abceb4ec51a54e6c0fee3f873', '3': 'c3bcff60fce846fe962148c3d93865f9df086aeb42e18cdaa35dd5ad49dc5aed'}
+2023-10-04 11:58:15,957 - INFO - b'{"0": "2fbda3f84e66fc81db2b5a13698c57643afc4ce0802542cf31784a22c854f911", "1": "ac62c876f2be9b9e144fedfadee1ca5a21a587745679cbeb2d9cbe063388cf7b", "2": "27707d4fa8b09c8f1032481bef578bba095f161abceb4ec51a54e6c0fee3f873", "3": "c3bcff60fce846fe962148c3d93865f9df086aeb42e18cdaa35dd5ad49dc5aed"}'
+2023-10-04 11:58:15,965 - INFO - True
+2023-10-04 11:59:17,431 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-04 11:59:19,088 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 8562}
+2023-10-04 11:59:19,088 - INFO - reading the table
+2023-10-04 11:59:19,088 - INFO - table read, length of the table is : 4
+2023-10-04 11:59:19,088 - INFO - {'0': '1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b', '1': 'c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae', '2': '672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d', '3': 'a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309'}
+2023-10-04 11:59:19,088 - INFO - b'{"0": "1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b", "1": "c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae", "2": "672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d", "3": "a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309"}'
+2023-10-04 11:59:19,088 - INFO - True
+2023-10-04 12:53:47,114 - INFO - Started server on port 8888
+2023-10-04 12:53:47,114 - INFO - Started connecting to peers
+2023-10-04 12:53:49,708 - INFO - Node 8888 received connection from 127.0.0.1
+2023-10-04 12:53:51,630 - ERROR - Error connecting to 10.10.2.113:8888. Error: [WinError 1225] The remote computer refused the network connection
+2023-10-04 12:53:51,943 - INFO - request from the client {'NODE': 'SELF', 'TYPE': 'UPLOAD', 'SIZE': 8562}
+2023-10-04 12:53:51,943 - INFO - reading the table
+2023-10-04 12:53:51,943 - INFO - table read, length of the table is : 4
+2023-10-04 12:53:51,943 - INFO - {'0': '1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b', '1': 'c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae', '2': '672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d', '3': 'a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309'}
+2023-10-04 12:53:51,943 - INFO - b'{"0": "1fac4c1e0b052cfd9a0137166fedffb2eff58d2632021fb91a34f28e4565462b", "1": "c6a5b1dcecf1fb66a4a5ed78bba46d5d1771896e7d8e5c192816e39e4957c7ae", "2": "672cc9cb2b5440b9adcbb28e0b064156dcc24a9586724ed724898cf1f6e5105d", "3": "a251df23cc6af3d69a0d55c26f222dae05f28d194e66feb822c857e5bdc3a309"}'
+2023-10-04 12:53:51,943 - INFO - True

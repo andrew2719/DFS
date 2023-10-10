@@ -7,8 +7,7 @@ import json
 from .client_logger import client_logger as c_logger
 from FileManagement import chunker
 import base64
-from Handler import Responses
-
+from Handler import Responses, Serializer
 
 
 
@@ -42,16 +41,14 @@ class Client:
 
     async def connect_to_server(self):
         self.reader, self.writer = await asyncio.open_connection('127.0.0.1', 8888)
-        self.read_ = Responses.ReadWrite(self.reader, self.writer).read_
+        self.read_ = Responses.ReadWrite(self.reader, self.writer).read_loop
         self.write_ = Responses.ReadWrite(self.reader, self.writer).write_
+        self.write_in_loop = Responses.ReadWrite(self.reader, self.writer).write_in_loop
         response = await self.reader.read(1024)
         c_logger.info(response.decode())
         if self.reader and self.writer:
             c_logger.info('Connected to the server')
 
-    # async def write_(self, writer, data):
-    #     writer.write(data)
-    #     await writer.drain()
 
     async def meta_data(self, file_path):
 
@@ -81,9 +78,9 @@ class Client:
         c_logger.info('preparing look up table...')
         try:
             self.look_up_table,self.hash_table = await chunker.Chunker(self.file_data).chunker() # dicts
-            # c_logger.info(self.look_up_table)
+            c_logger.info(self.look_up_table)
             c_logger.info(self.hash_table)
-            c_logger.info('look up table prepared, ',type(self.look_up_table))
+            c_logger.info('look up table prepared')
         except Exception as e:
             c_logger.error(e)
 
@@ -97,8 +94,8 @@ class Client:
         await self.write_(json.dumps(self.file_info).encode())
         meta_data_response = await self.reader.read(1024)
         c_logger.info(f'meta data response: {meta_data_response.decode()}')
-        # serialize the look up table
 
+        # serialize the look up table
         # seralise the look up table to tble using the base64 if any binary data is present
         table  = {}
         for i in self.look_up_table:
@@ -110,52 +107,10 @@ class Client:
                     table[i][j] = self.look_up_table[i][j]
 
         table = json.dumps(table).encode()
-        # add @@EOM@@ to the end of the table
-        table += b"@@EOM@@"
-        table_len = len(table)
 
-        # send the table to the serveras 1024 bytes at a time
-        # for i in range(0,table_len,1024):
-        #     c_logger.info(f'sending {i} to {i+1024}')
-        #     await self.write_(table[i:i+1024])
-        #     if (i+1024 >= table_len) or (not table[i+1024:]):
-        #         break
-        total_bytes_sent = 0
-
-        # for i in range(0, table_len, 1024):
-        #     start_idx = i
-        #     end_idx = min(i + 1024, table_len)
-        #     chunk_size = end_idx - start_idx
-        #
-        #     await self.write_(table[start_idx:end_idx])
-        #
-        #     total_bytes_sent += chunk_size
-        #     c_logger.info(
-        #         f'Sending bytes {start_idx} to {end_idx}. Chunk size: {chunk_size}. Total bytes sent: {total_bytes_sent}')
-        #
-        #     if end_idx >= table_len or not table[end_idx:]:
-        #         break
-
-        delimiter = b"@@EOM@@"
-        table_with_delimiter = table + delimiter
-        table_len = len(table_with_delimiter)
-
-        buffer = table_with_delimiter
-        chunk_size = 1024
-
-        while buffer:
-            chunk = buffer[:chunk_size]
-            buffer = buffer[chunk_size:]
-
-            await self.write_(chunk)
-
-            c_logger.info(f'Sent chunk of size: {len(chunk)}. Remaining data length: {len(buffer)}')
-
+        c_logger.info('sending table...')
+        await self.write_in_loop(table)
         c_logger.info('table sent')
-        # await self.write_(self.writer, "@@EOM@@")
-
-
-
 
         c_logger.info('waiting for response hash table')
 

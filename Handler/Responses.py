@@ -3,7 +3,7 @@ class ReadWrite:
     def __init__(self,reader,writer):
         self.reader = reader
         self.writer = writer
-    async def read_(self):
+    async def read_loop(self):
         buffer = b""
         delimiter = b"@@EOM@@"
 
@@ -21,3 +21,19 @@ class ReadWrite:
     async def write_(self, data):
         self.writer.write(data)
         await self.writer.drain()
+
+    async def write_in_loop(self,data):
+        delimiter = b"@@EOM@@"
+        data_with_delimiter = data + delimiter
+        table_len = len(data_with_delimiter)
+
+        buffer = data_with_delimiter
+        chunk_size = 1024
+
+        while buffer:
+            chunk = buffer[:chunk_size]
+            buffer = buffer[chunk_size:]
+
+            await self.write_(chunk)
+
+

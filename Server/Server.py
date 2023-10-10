@@ -27,8 +27,9 @@ class Server:
     async def handle_inbound(self, reader, writer):
         addr = writer.get_extra_info('peername')[0]
         logger.info(f"Node {self.port} received connection from {addr}")
-        writer.write(f"you are connected to {self.port}".encode())
-        await writer.drain()
+        await self.write_(writer,f"you are connected to {self.port}".encode())
+        # writer.write(f"you are connected to {self.port}".encode())
+        # await writer.drain()
 
         request = await reader.read(1024) # the type of request , size of the file, the name of the file, later after making required arrangements the ccontent of the file is sent from the client
         request = json.loads(request.decode())

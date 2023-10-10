@@ -17,7 +17,7 @@ class SelfHandle:
         self.table = b''
         self.chunk_size = 1024  # assuming a default chunk size
         self.hash_table = {}
-        self.read_, self.write_ = (Responses.ReadWrite(self.reader, self.writer).read_,
+        self.read_, self.write_ = (Responses.ReadWrite(self.reader, self.writer).read_loop,
                                    Responses.ReadWrite(self.reader, self.writer).write_)
 
     async def read_look_up_table(self):

@@ -1,0 +1,18 @@
+```
+>>> str(x)
+"b'hello this is a string'"
+>>> str(x)[2:len(str(x))-1].encode()
+b'hello this is a string'
+```
+
+```
+>>> e
+bytearray(b'hello this is a string')
+>>> base64.b64encode(e)
+b'aGVsbG8gdGhpcyBpcyBhIHN0cmluZw=='
+>>> y = base64.b64encode(e).decode()
+>>> y
+'aGVsbG8gdGhpcyBpcyBhIHN0cmluZw=='
+>>> base64.b64decode(y.encode())
+b'hello this is a string'
+```
