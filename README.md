@@ -4,6 +4,48 @@
 
 This project aims to create a public blockchain allowing users to store documents on the network. The unique feature is the hybrid consensus mechanism combining Proof of Stake (PoS) and periodic Proof of Work (PoW) to generate coins. It also offers an API interface for organizations to use this network as a decentralized database.
 
+[//]: # (href for the Documentation folder)
+[For detailed code details, please refer to the Documentation folder.](Documentation)
+
+## Installation
+
+[//]: # (jus the basic structre the directories of the project)
+Directory structure.
+```bash
+DFS
+├── assets
+├── Client
+├── DFS_main
+├── Server
+├── .
+├── .
+├── .
+├── requirements.txt
+└── README.md
+```
+
+
+To install the requirements.txt use the following command:
+
+```bash
+pip install -r requirements.txt
+```
+Be in the DFS directory and run the following commands
+
+To Run the server
+
+```bash
+python -m DFS_main.main
+```
+
+To Run the client
+
+```bash
+python -m Client.Client
+```
+
+
+
 ## Key Features
 
 - **Hybrid Consensus Mechanism**: Utilizing both PoS and periodic PoW to ensure network security and reward participants.

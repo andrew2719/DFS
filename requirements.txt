@@ -1,0 +1,2 @@
+aiofiles~=23.2.1
+psutil~=5.9.5
