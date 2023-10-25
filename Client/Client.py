@@ -25,10 +25,9 @@ class Client:
                 'DATA': chunk,
                 'HASH': None,
                 'SIZE': len(chunk),
-                'sent_to': [],
             }
         '''
-        self.hash_table = None #this is used to check the integrity of the file
+        self.hash_table = None
         '''
         self.hash_table[i] = hashlib.sha256(chunk).hexdigest()
         '''
@@ -39,65 +38,37 @@ class Client:
         self.hasher.update(data)
         self.file_size += len(data)
 
-    async def connect_to_server(self):
+    async def connectToServer(self):
         self.reader, self.writer = await asyncio.open_connection('127.0.0.1', 8888)
-        self.read_ = Responses.ReadWrite(self.reader, self.writer).read_loop
-        self.write_ = Responses.ReadWrite(self.reader, self.writer).write_
-        self.write_in_loop = Responses.ReadWrite(self.reader, self.writer).write_in_loop
-        response = await self.reader.read(1024)
-        c_logger.info(response.decode())
+
         if self.reader and self.writer:
             c_logger.info('Connected to the server')
 
+        read_write_obj = Responses.ReadWrite(self.reader, self.writer)
+        self.read_in_loop = read_write_obj.read_in_loop
+        self.write_ = read_write_obj.write_
+        self.write_in_loop = read_write_obj.write_in_loop
 
-    async def meta_data(self, file_path):
+        response = await self.reader.read(1024)
+        c_logger.info(response.decode())
 
+    async def metaData(self, size,file_path):
+        extension_of_file = os.path.splitext(file_path)[1]
         self.file_info = {
             'NODE':'SELF',
             "TYPE" : "UPLOAD",
-            "SIZE": os.path.getsize(file_path),
+            "SIZE": size,
+            "EXTENSION": extension_of_file,
         }
 
-    async def read_file(self, file_path):
+    async def readFile(self, file_path):
         with open(file_path, 'rb') as file:
             data = file.read(1024)
             while data:
                 await self.append_data(data)
                 data = file.read(1024)
-
-    async def prepare_data(self,file_path):
-
-        c_logger.info('reading file...')
-        await self.read_file(file_path) #this complete the data, hashing and size of the file
-        c_logger.info('file read')
-
-        c_logger.info('preparing meta data...')
-        await self.meta_data(file_path)
-        c_logger.info('meta data prepared')
-
-        c_logger.info('preparing look up table...')
-        try:
-            self.look_up_table,self.hash_table = await chunker.Chunker(self.file_data).chunker() # dicts
-            c_logger.info(self.look_up_table)
-            c_logger.info(self.hash_table)
-            c_logger.info('look up table prepared')
-        except Exception as e:
-            c_logger.error(e)
-
-    async def send_file(self, file_path):
-
-        c_logger.info('preparing data...')
-        await self.prepare_data(file_path)
-        c_logger.info('data prepared')
-
-        # Send meta data
-        await self.write_(json.dumps(self.file_info).encode())
-        meta_data_response = await self.reader.read(1024)
-        c_logger.info(f'meta data response: {meta_data_response.decode()}')
-
-        # serialize the look up table
-        # seralise the look up table to tble using the base64 if any binary data is present
-        table  = {}
+    async def serializeTable(self):
+        table = {}
         for i in self.look_up_table:
             table[i] = {}
             for j in self.look_up_table[i]:
@@ -106,15 +77,46 @@ class Client:
                 else:
                     table[i][j] = self.look_up_table[i][j]
 
-        table = json.dumps(table).encode()
+        self.table = json.dumps(table).encode()
+        return self.table
+
+    async def prepare_data(self,file_path):
+
+        c_logger.info('reading file...')
+        await self.readFile(file_path) #this complete the data, hashing and size of the file
+        c_logger.info('file read')
+
+        c_logger.info('preparing look up table...')
+        try:
+            self.look_up_table, self.hash_table = await chunker.Chunker(self.file_data).chunker()  # dicts
+            c_logger.info('look up and hash table prepared')
+        except Exception as e:
+            c_logger.error(e)
+
+        size = len(await self.serializeTable())
+
+        c_logger.info('preparing meta data...')
+        await self.metaData(size,file_path)
+        c_logger.info('meta data prepared')
+
+
+
+    async def SendFile(self, file_path):
+
+        c_logger.info('preparing data...')
+        await self.prepare_data(file_path)
+        c_logger.info('data prepared')
+
+        await self.write_(json.dumps(self.file_info).encode())
+        meta_data_response = await self.reader.read(1024)
+        c_logger.info(f'meta data response: {meta_data_response.decode()}')
 
         c_logger.info('sending table...')
-        await self.write_in_loop(table)
+        await self.write_in_loop(self.table)
         c_logger.info('table sent')
 
         c_logger.info('waiting for response hash table')
-
-        response_hash_table = await self.read_()
+        response_hash_table = await self.read_in_loop()
 
         response_hash_table = json.loads(response_hash_table.decode())
         c_logger.info(response_hash_table)
@@ -125,14 +127,15 @@ class Client:
 
         if response_hash_table == self.hash_table:
             c_logger.info("Hashes are same")
-            await self.write_("True".encode())
+            await self.write_in_loop("True".encode())
         else:
-            await self.write_("False".encode())
+            await self.write_in_loop("False".encode())
             c_logger.error("Hashes are not same")
 
+        # final_response = await self.read_in_loop()
 
-    async def choose_file_and_send(self):
-        await self.connect_to_server()
+    async def chooseFileAndSend(self):
+        await self.connectToServer()
 
         # Open file explorer and get file path
         root = tk.Tk()
@@ -142,6 +145,9 @@ class Client:
         # Check if a file is selected
         if file_path:
             c_logger.info(f'File selected: {file_path}')
-            await self.send_file(file_path)
+            await self.SendFile(file_path)
 
-asyncio.run(Client().choose_file_and_send())
+#         close the self.writer
+        self.writer.close()
+
+asyncio.run(Client().chooseFileAndSend())

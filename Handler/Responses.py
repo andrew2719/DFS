@@ -3,7 +3,7 @@ class ReadWrite:
     def __init__(self,reader,writer):
         self.reader = reader
         self.writer = writer
-    async def read_loop(self):
+    async def read_in_loop(self):
         buffer = b""
         delimiter = b"@@EOM@@"
 
@@ -22,6 +22,11 @@ class ReadWrite:
         self.writer.write(data)
         await self.writer.drain()
 
+    async def read_(self):
+        data = await self.reader.read(1024)
+        return data
+
+
     async def write_in_loop(self,data):
         delimiter = b"@@EOM@@"
         data_with_delimiter = data + delimiter
@@ -35,5 +40,3 @@ class ReadWrite:
             buffer = buffer[chunk_size:]
 
             await self.write_(chunk)
-
-

@@ -13,7 +13,6 @@ class Chunker:
         'DATA': bytearray,
         'HASH': None,
         'SIZE': int,
-        sent_to = [],
         }'''
         self.hash_table = {}
 
@@ -21,6 +20,7 @@ class Chunker:
     async def chunker(self):
         """Divide the data (bytearray) into 'n' chunks."""
         chunk_size = len(self.data) // self.n
+
         for i in range(self.n):
             chunk = self.data[i * chunk_size: (i + 1) * chunk_size]
             self.chunks[i] = {
@@ -28,7 +28,6 @@ class Chunker:
                 'DATA': chunk,
                 'HASH': None,
                 'SIZE': len(chunk),
-                'sent_to': [],
             }
             self.hash_table[i] = hashlib.sha256(chunk).hexdigest()
 

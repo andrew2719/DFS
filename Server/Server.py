@@ -28,20 +28,32 @@ class Server:
         addr = writer.get_extra_info('peername')[0]
         logger.info(f"Node {self.port} received connection from {addr}")
         await self.write_(writer,f"you are connected to {self.port}".encode())
-        # writer.write(f"you are connected to {self.port}".encode())
-        # await writer.drain()
 
-        request = await reader.read(1024) # the type of request , size of the file, the name of the file, later after making required arrangements the ccontent of the file is sent from the client
+        request = await reader.read(1024)
         request = json.loads(request.decode())
 
         if request["NODE"] == "SELF":
-
-            logger.info(f'request from the client {request}')
-
             ask = {"status":True,"request":request}
+            logger.info(ask)
+
             await self.write_(writer,json.dumps(request).encode())
+
             self_handler = SelfHandler.SelfHandle(reader,writer,request,self.peer_connections)
             read_look_up = await self_handler.read_look_up_table()
+
+
+            # sorted_keys = sorted(read_look_up.keys())
+            # original_data = b"".join([read_look_up[i]['DATA'] for i in sorted_keys])
+            # # add the extension from request['EXTENSION'] and save to save_path as file_1
+            # file_name = os.path.join(self.save_path, f"file_1{request['EXTENSION']}")
+            # async with aiofiles.open(file_name, 'wb') as file:
+            #     await file.write(original_data)
+            #     logger.info(f"File {file_name} saved successfully")
+
+
+            logger.info("closing the connection with the node : " + str(addr))
+            writer.close()
+
 
         else:
 
