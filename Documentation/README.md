@@ -1,38 +1,37 @@
-"# DFS"
+# Distributed File System using Blockchain Technology
 
-This Distributed File System Using Blockchain contains several packages that helps with the bulding these are listed below:
+## Project Overview
 
-1. [DFS_main](../DFS_main)
-   - this package contains main, logger, and server files(recieved)
-   - this mainly deals with the outer things
-   - from this main.py everything starts
-   - it starts the server and later everything is done by the server for handling the requests
+This project aims to create a public blockchain allowing users to store documents on the network. The unique feature is the hybrid consensus mechanism combining Proof of Stake (PoS) and periodic Proof of Work (PoW) to generate coins. It also offers an API interface for organizations to use this network as a decentralized database.
 
-2. [Server](../Server)
-   - this package contains the server files
-   - this mainly deals with the inner things
-   - it handles the requests and sends the response to the client
+## Key Features
 
-3. [Client](../Client)
-   - This can be used to upload the file to the sever
-   - when the file is uploaded it will go to the FileManager to complete the required tasks
+- **Hybrid Consensus Mechanism**: Utilizing both PoS and periodic PoW to ensure network security and reward participants.
+- **File Distribution**: Files are split into chunks and distributed across nodes, ensuring redundancy and availability.
+- **Data Verification**: Using SHA-256 hashes for data integrity checks.
+- **Node Communication**: Nodes communicate for data storage, retrieval, and consensus tasks.
+- **Erasure Coding**: Planned implementation to handle node downtime and ensure data redundancy.
 
-4. [Handler](../Handler)
-   - this handles the incoming requests from the server
-   - the server send the data to the handler and handler handles as required for the programe
-5. [FileManagement](../FileManagement)
-   - this is used to handle the file
-   - processing the data,making into chunks, maintaing the file structure(creating tables for storing)
-   - and later stored in the DFS_main for easy access
+## Security Considerations
 
-encode and decode works only for the string or the json.dumps()
+- **Sybil Attacks**: Risks of malicious nodes trying to gain a disproportionate influence on the network.
+  - *Potential Solution*: Implementing Proof of Replication and Proof of SpaceTime, combined with economic incentives and node validation.
+  
+- **Data Tampering**: The integrity of data chunks is verified using SHA-256 hashes. 
 
-encode means converting the "string" to bytes
+- **Node Behavior**: Periodic checks ensure nodes retain the data they claim to, reducing the risk of malicious behavior.
 
+## Future Enhancements
 
-decode means converting the bytes to "string"
+- **Erasure Coding**: To ensure data is retrievable even if some nodes go offline.
+- **Consensus Mechanism Refinement**: Further study and refinement of the PoS and PoW mechanisms.
+- **API Extensions**: Expanding the API offerings to cater to diverse organizational needs.
 
-from string to dict we use json.loads()
+## Positive Aspects
 
-from dict to string we use json.dumps()
+- **Decentralization**: Ensuring no single point of failure.
+- **Data Redundancy**: By distributing file chunks across nodes.
+- **Security**: Through cryptographic mechanisms and consensus protocols.
 
+## Negative Aspects
+- **Scalability**: Scaling might be issue when the network grows.
