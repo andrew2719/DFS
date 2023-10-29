@@ -46,6 +46,7 @@ class SelfHandle:
         await self.write_in_loop(self.hash_table)
 
         further = await self.read_in_loop()
+
         further = further.decode()
 
         logger.info(further)
