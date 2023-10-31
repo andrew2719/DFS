@@ -10,6 +10,10 @@ import base64
 from Handler import Responses, Serializer
 
 
+class pnr:
+    def __init__(self):
+        pass
+
 
 class Client:
     def __init__(self):
