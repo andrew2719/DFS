@@ -1,3 +1,4 @@
+from Client.client_logger import client_logger as c_logger
 class ReadWrite:
 
     def __init__(self,reader,writer):
@@ -19,6 +20,9 @@ class ReadWrite:
                 return message
 
     async def write_(self, data):
+
+        # c_logger.info("writing the data{}".format(data))
+
         self.writer.write(data)
         await self.writer.drain()
 

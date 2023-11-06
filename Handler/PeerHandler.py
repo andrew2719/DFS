@@ -1,6 +1,7 @@
 import asyncio
 import hashlib
-
+from . import Responses
+import json
 class Distributor:
     def __init__(self, peer_connections):
         self.peers = peer_connections
@@ -10,6 +11,7 @@ class Distributor:
         for ip, (reader, writer) in self.peers.items():
             self.node_metadata[ip] = {'success_rate': 0, 'retries': 0}
         self.busy_nodes = {ip: False for ip in self.peers.keys()}
+        self.lookup_table = {}
         # self.table = None
 
     def get_backoff_delay(self, attempt):
@@ -25,13 +27,25 @@ class Distributor:
 
             ip = available_nodes[0]
             reader, writer = self.peers[ip]
+
             self.busy_nodes[ip] = True
 
             try:
                 ack_received = await self.send_initial_ack(reader, writer, data)
+
                 if ack_received:
-                    await self.send_data_to_node(writer, idx, data)
-                    break
+                    sending_status = await self.send_data_to_node(writer, idx, data)
+                    if sending_status:
+                        self.node_metadata[ip]['success_rate'] += 1
+                        self.lookup_table[idx] = ip
+                        break
+                    else:
+                        self.node_metadata[ip]['retries'] += 1
+                        delay = self.get_backoff_delay(attempt)
+                        await asyncio.sleep(delay)
+                        attempt += 1
+                        continue
+
                 else:
                     self.node_metadata[ip]['retries'] += 1
                     delay = self.get_backoff_delay(attempt)
@@ -39,6 +53,10 @@ class Distributor:
                     attempt += 1
             finally:
                 self.busy_nodes[ip] = False
+
+    def compute_hash(self, data):
+        """Compute hash of the data chunk."""
+        return hashlib.sha256(data).hexdigest()
 
     async def send_initial_ack(self, reader, writer, data):
         size = len(data)
@@ -51,19 +69,31 @@ class Distributor:
         return response.decode().strip() == expected_hash
 
     async def send_data_to_node(self, writer, idx, data):
-        writer.write(data.encode())
-        await writer.drain()
+
+        write_in_loop = Responses.ReadWrite(None, writer).write_in_loop
+
+        data = {
+            'data': data,
+        }
+
+        await write_in_loop(json.dumps(data).encode())
+
+        expected_hash = self.compute_hash(data)
+
+        response_hash = await writer.read(1024)
+
+        return response_hash.decode().strip() == expected_hash
 
     async def distribute_to_nodes(self, data_table):
         tasks = [self.distribute_chunk_to_node(idx, data) for idx, data in data_table.items()]
         await asyncio.gather(*tasks)
+
     async def distribute(self,data_table):
         self.table = {}
         for i in data_table:
-            self.table[i] = {}
-            for j in data_table[i]:
-                if j == "DATA":
-                    self.table[i][j] = base64.b64encode(data_table[i][j]).decode()
+            self.table[i] = data_table[i]['DATA']
+
+        await self.distribute_to_nodes(self.table)
 
 # Example usage
 peer_connections = {
