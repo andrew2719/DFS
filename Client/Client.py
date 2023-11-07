@@ -85,16 +85,9 @@ class Client:
         c_logger.info('reading file...')
         await self.readFile(file_path) #this complete the data, hashing and size of the file
         c_logger.info('file read')
+        self.hash = self.hasher.hexdigest()
 
-        c_logger.info('preparing look up table...')
-        try:
-            self.look_up_table, self.hash_table = await chunker.Chunker(self.file_data).chunker()  # dicts
-            c_logger.info('look up and hash table prepared')
-        except Exception as e:
-            c_logger.error(e)
-
-        size = len(await self.serializeTable())
-
+        size = len(self.file_data)
         c_logger.info('preparing meta data...')
         await self.metaData(size,file_path)
         c_logger.info('meta data prepared')
@@ -111,21 +104,18 @@ class Client:
         meta_data_response = await self.reader.read(1024)
         c_logger.info(f'meta data response: {meta_data_response.decode()}')
 
-        c_logger.info('sending table...')
-        await self.write_in_loop(self.table)
-        c_logger.info('table sent')
+        c_logger.info('sending data...')
+        await self.write_in_loop(self.file_data)
+        c_logger.info('data sent')
 
-        c_logger.info('waiting for response hash table')
-        response_hash_table = await self.read_in_loop()
+        c_logger.info('waiting for response hash')
+        response_hash = await self.read_in_loop()
 
-        response_hash_table = json.loads(response_hash_table.decode())
-        c_logger.info(response_hash_table)
-        c_logger.info('response hash table received')
+        response_hash = response_hash.decode()
+        c_logger.info(response_hash)
+        c_logger.info('response hash received')
 
-        self.hash_table = json.dumps(self.hash_table).encode()
-        self.hash_table = json.loads(self.hash_table.decode())
-
-        if response_hash_table == self.hash_table:
+        if response_hash == self.hash:
             c_logger.info("Hashes are same")
             await self.write_in_loop("True".encode())
         else:
