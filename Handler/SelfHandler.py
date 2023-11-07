@@ -7,6 +7,7 @@ import hashlib
 from DFS_main.logger import logger
 import base64
 from . import Responses
+from FileManagement import chunker
 
 class SelfHandle:
     def __init__(self, reader, writer, file_info, peer_connections):
@@ -43,7 +44,14 @@ class SelfHandle:
         logger.info(further)
 
         if further == 'True':
-            pass
+            logger.info('preparing look up table...')
+            try:
+                self.look_up_table, self.hash_table = await chunker.Chunker(self.data).chunker()  # dicts
+                logger.info('look up and hash table prepared')
+                return self.look_up_table, self.hash_table
+            except Exception as e:
+                logger.error(e)
+
         else:
             return False
 

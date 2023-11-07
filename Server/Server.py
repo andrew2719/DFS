@@ -39,7 +39,9 @@ class Server:
             await self.write_(writer,json.dumps(request).encode())
 
             self_handler = SelfHandler.SelfHandle(reader,writer,request,self.peer_connections)
-            read_look_up = await self_handler.read_look_up_table()
+            read_look_up,hash_table = await self_handler.read_look_up_table()
+            # logger.info("read look up table is : " + str(read_look_up))
+            # logger.info("hash table is : " + str(hash_table))
 
 
             # sorted_keys = sorted(read_look_up.keys())

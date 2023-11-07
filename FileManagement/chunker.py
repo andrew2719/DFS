@@ -1,5 +1,5 @@
 import asyncio
-from Server.Server import Server
+
 import hashlib
 
 
@@ -13,6 +13,7 @@ class Chunker:
         'DATA': bytearray,
         'HASH': None,
         'SIZE': int,
+        'SENT_TO': None,
         }'''
         self.hash_table = {}
 
@@ -28,6 +29,7 @@ class Chunker:
                 'DATA': chunk,
                 'HASH': None,
                 'SIZE': len(chunk),
+                'SENT_TO': None,
             }
             self.hash_table[i] = hashlib.sha256(chunk).hexdigest()
 
