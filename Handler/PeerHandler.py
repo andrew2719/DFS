@@ -1,112 +1,79 @@
 import asyncio
-import hashlib
-from . import Responses
-import json
-class Distributor:
-    def __init__(self, peer_connections):
-        self.peers = peer_connections
+import random
+
+
+class DataDistributor:
+    def __init__(self, peers):
+        self.peers = peers  # Dictionary with {ip: (reader, writer)}
+        self.locks = {ip: asyncio.Lock() for ip in peers}
         self.MAX_RETRIES = 3
-        self.BACKOFF_INITIAL_DELAY = 1  # in seconds
-        self.node_metadata = {}
-        for ip, (reader, writer) in self.peers.items():
-            self.node_metadata[ip] = {'success_rate': 0, 'retries': 0}
-        self.busy_nodes = {ip: False for ip in self.peers.keys()}
-        self.lookup_table = {}
-        # self.table = None
-
-    def get_backoff_delay(self, attempt):
-        return min(self.MAX_RETRIES, self.BACKOFF_INITIAL_DELAY * (2 ** attempt))
-
-    async def distribute_chunk_to_node(self, idx, data):
-        attempt = 0
-        while attempt < self.MAX_RETRIES:
-            available_nodes = [ip for ip, is_busy in self.busy_nodes.items() if not is_busy]
-            if not available_nodes:
-                await asyncio.sleep(self.BACKOFF_INITIAL_DELAY)
-                continue
-
-            ip = available_nodes[0]
-            reader, writer = self.peers[ip]
-
-            self.busy_nodes[ip] = True
-
-            try:
-                ack_received = await self.send_initial_ack(reader, writer, data)
-
-                if ack_received:
-                    sending_status = await self.send_data_to_node(writer, idx, data)
-                    if sending_status:
-                        self.node_metadata[ip]['success_rate'] += 1
-                        self.lookup_table[idx] = ip
-                        break
-                    else:
-                        self.node_metadata[ip]['retries'] += 1
-                        delay = self.get_backoff_delay(attempt)
-                        await asyncio.sleep(delay)
-                        attempt += 1
-                        continue
-
-                else:
-                    self.node_metadata[ip]['retries'] += 1
-                    delay = self.get_backoff_delay(attempt)
-                    await asyncio.sleep(delay)
-                    attempt += 1
-            finally:
-                self.busy_nodes[ip] = False
-
-    def compute_hash(self, data):
-        """Compute hash of the data chunk."""
-        return hashlib.sha256(data).hexdigest()
+        self.BACKOFF_INITIAL_DELAY = 1
+        self.BACKOFF_FACTOR = 2
+        self.MAX_BACKOFF = 60
 
     async def send_initial_ack(self, reader, writer, data):
-        size = len(data)
-        message = f"type:upload,size:{size}"
-        writer.write(message.encode())
-        await writer.drain()
-        response = await reader.readline()
-        expected_hash = hashlib.sha256(str(size).encode()).hexdigest()
-
-        return response.decode().strip() == expected_hash
+        # Your ACK sending implementation here
+        pass
 
     async def send_data_to_node(self, writer, idx, data):
+        # Your data sending implementation here
+        pass
 
-        write_in_loop = Responses.ReadWrite(None, writer).write_in_loop
+    def calculate_backoff_delay(self, attempt):
+        return min(self.MAX_BACKOFF, random.uniform(self.BACKOFF_INITIAL_DELAY, self.BACKOFF_FACTOR ** attempt))
 
-        data = {
-            'data': data,
-        }
+    async def distribute_chunk_to_node(self, idx, data):
+        nodes_tried = set()  # Keep track of nodes that have been tried
+        while len(nodes_tried) < len(self.peers):
+            for ip, lock in self.locks.items():
+                if ip in nodes_tried:
+                    continue  # Skip nodes that we've already tried the max number of times
 
-        await write_in_loop(json.dumps(data).encode())
+                try:
+                    async with lock:
+                        reader, writer = self.peers[ip]
+                        for attempt in range(1, self.MAX_RETRIES + 1):
+                            try:
+                                ack_received = await self.send_initial_ack(reader, writer, data)
+                                if ack_received:
+                                    sending_status = await self.send_data_to_node(writer, idx, data)
+                                    if sending_status:
+                                        self.lookup_table[idx] = ip  # Track where the data was sent
+                                        return True  # Data was successfully sent
+                            except Exception as e:
+                                print(f"Error sending data to node {ip} on attempt {attempt}: {e}")
+                                if attempt == self.MAX_RETRIES:
+                                    nodes_tried.add(ip)  # Add to nodes tried after reaching max retries
+                                    break  # Move to the next node after max retries
+                                backoff_delay = self.calculate_backoff_delay(attempt)
+                                await asyncio.sleep(backoff_delay)
+                        break  # Break after attempting to send to the current node
+                except asyncio.CancelledError:
+                    raise
+                except Exception as e:
+                    print(f"An unexpected error occurred with node {ip}: {e}")
+                finally:
+                    await asyncio.sleep(0.01)  # Small sleep to prevent busy looping
 
-        expected_hash = self.compute_hash(data)
+        return False  # If all nodes have been tried and data has not been sent
 
-        response_hash = await writer.read(1024)
 
-        return response_hash.decode().strip() == expected_hash
+async def main():
+    # Example peers structure
+    peers = {
+        'peer1': (None, None),  # Replace with actual reader and writer objects
+        'peer2': (None, None),
+        # ... more peers ...
+    }
 
-    async def distribute_to_nodes(self, data_table):
-        tasks = [self.distribute_chunk_to_node(idx, data) for idx, data in data_table.items()]
-        await asyncio.gather(*tasks)
+    distributor = DataDistributor(peers)
 
-    async def distribute(self,data_table):
-        self.table = {}
-        for i in data_table:
-            self.table[i] = data_table[i]['DATA']
+    # Example of distributing data
+    tasks = [distributor.distribute_chunk_to_node(idx, data)
+             for idx, data in enumerate(["data1", "data2", "data3"])]  # Replace with actual data
 
-        await self.distribute_to_nodes(self.table)
+    results = await asyncio.gather(*tasks)
+    print(results)  # This will show which tasks were successful and which were not
 
-# Example usage
-peer_connections = {
-'192.168.1.1': (None, None),  # dummy (reader, writer) for now
-'192.168.1.2': (None, None)
-}
 
-distributor = Distributor(peer_connections)
-data_table = {
-1: 'data1',
-2: 'data2',
-3: 'data3'
-}
-
-# To distribute the chunks
-# asyncio.run(distributor.distribute_to_nodes(data_table))
+asyncio.run(main())
