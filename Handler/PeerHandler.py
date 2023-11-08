@@ -1,9 +1,11 @@
 import asyncio
 import random
-from Responses import ReadWrite
+# from Responses import ReadWrite
+from . import Responses
 import json
 from FileManagement import chunker
 import hashlib
+from DFS_main.logger import logger
 
 class DataDistributor:
     def __init__(self, peers):
@@ -14,15 +16,15 @@ class DataDistributor:
         self.BACKOFF_FACTOR = 2
         self.MAX_BACKOFF = 60
 
-    async def send_initial_ack(self,read_in_loop, write_in_loop, data):
+    async def send_initial_ack(self,read_write_obj,data):
         inital_ack = {
-            'TYPE': 'INITIAL_ACK',
+            'TYPE': 'UPLOAD',
             'size': data
         }
         inital_ack = json.dumps(inital_ack).encode()
-        await write_in_loop(inital_ack)
+        await read_write_obj.write_(inital_ack)
 
-        ack_received = await read_in_loop()
+        ack_received = await read_write_obj.read_in_loop()
         ack_received = json.loads(ack_received.decode())
         return ack_received['status']
 
@@ -34,7 +36,17 @@ class DataDistributor:
         hash = hashlib.sha256(data).hexdigest()
 
         if hash == response_hash.decode():
-            return True,hash
+            logger.info("from PeerHandler.py : Hash matched")
+            further = await write_in_loop("True".encode())
+            save_status = await read_in_loop()
+            save_status = json.loads(save_status.decode())
+
+            if save_status['status']==True:
+                logger.info("File saved successfully")
+                return True,hash
+            else:
+                logger.error(save_status)
+                return False,None
         else:
             return False,None
 
@@ -53,12 +65,13 @@ class DataDistributor:
                 try:
                     async with lock:
                         reader, writer = self.peers[ip]
-                        read_in_loop = ReadWrite(reader, writer).read_in_loop()
-                        write_in_loop = ReadWrite(reader, writer)
+                        read_write_obj = Responses.ReadWrite(reader, writer)
+                        read_in_loop = Responses.ReadWrite(reader, writer).read_in_loop()
+                        write_in_loop = Responses.ReadWrite(reader, writer)
                         for attempt in range(1, self.MAX_RETRIES + 1):
                             try:
                                 size = len(chunk_info['DATA'])
-                                ack_received = await self.send_initial_ack(read_in_loop,write_in_loop, size)
+                                ack_received = await self.send_initial_ack(read_write_obj, size)
                                 if ack_received:
                                     sending_status,hash = await self.send_data_to_node(read_in_loop,write_in_loop, chunk_info['DATA'])
                                     if sending_status:
@@ -87,8 +100,16 @@ class DataDistributor:
         tasks = [self.distribute_chunk_to_node(chunk_info) for chunk_info in table.values()]
         results = await asyncio.gather(*tasks, return_exceptions=True)
 
+        # Check if any of the tasks failed if any failed return false else return true
+        for result in results:
+            if not result:
+                return False
+        return True
+
+
+
     async def distribute(self, data):
         table, hash_table = await chunker.Chunker(data).chunker()
-        await self.distribute_to_nodes(table)
+        sent_status = await self.distribute_to_nodes(table)
         final_table = table
-        return final_table
+        return final_table,sent_status

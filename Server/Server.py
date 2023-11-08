@@ -40,13 +40,20 @@ class Server:
             await self.write_(writer,json.dumps(request).encode())
 
             self_handler = SelfHandler.SelfHandle(reader,writer,request,self.peer_connections)
-            data= await self_handler.read_look_up_table()
+            data = await self_handler.read_look_up_table()
 
+            logger.info("starting the distribution of data")
             if data:
-                final_table = await PeerHandler.DataDistributor(self.peer_connections).distribute(data)
-                logger.info(final_table)
+
+                final_table,sent_status = await PeerHandler.DataDistributor(self.peer_connections).distribute(data)
+                if sent_status:
+                    logger.info("Data sent successfully")
+                    logger.info("Final table is : " + str(final_table))
+                else:
+                    logger.info("Data not sent successfully")
             else:
                 logger.info("Data not sent successfully")
+
 
 
 
@@ -67,7 +74,7 @@ class Server:
 
             handler = Handler.Handle(reader,writer,request)
 
-            handle = await handler.Handler() # sends back true or false stating the success
+            handle = await handler.Handler()
 
             writer.write(handle)
 
