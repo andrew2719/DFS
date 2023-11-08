@@ -7,6 +7,7 @@ from DFS_main.logger import logger
 import settings
 from Handler import Handler
 from Handler import SelfHandler
+from Handler import PeerHandler
 
 
 class Server:
@@ -39,9 +40,14 @@ class Server:
             await self.write_(writer,json.dumps(request).encode())
 
             self_handler = SelfHandler.SelfHandle(reader,writer,request,self.peer_connections)
-            read_look_up,hash_table = await self_handler.read_look_up_table()
-            # logger.info("read look up table is : " + str(read_look_up))
-            # logger.info("hash table is : " + str(hash_table))
+            data= await self_handler.read_look_up_table()
+
+            if data:
+                final_table = await PeerHandler.DataDistributor(self.peer_connections).distribute(data)
+                logger.info(final_table)
+            else:
+                logger.info("Data not sent successfully")
+
 
 
             # sorted_keys = sorted(read_look_up.keys())
@@ -79,16 +85,38 @@ class Server:
 
         await server.serve_forever()
 
+    # async def connect_to_peer(self, peer_ip, port=8888):
+    #     try:
+    #         reader, writer = await asyncio.open_connection(peer_ip, port)
+    #         self.peer_connections[peer_ip] = (reader, writer)
+    #         logger.info(f"Node {self.port} connected to peer {peer_ip}:{port}")
+    #
+    #     except Exception as e:
+    #         logger.error(f"Error connecting to {peer_ip}:{port}. Error: {e}")
     async def connect_to_peer(self, peer_ip, port=8888):
-        try:
-            reader, writer = await asyncio.open_connection(peer_ip, port)
-            self.peer_connections[peer_ip] = (reader, writer)
-            logger.info(f"Node {self.port} connected to peer {peer_ip}:{port}")
+        attempt = 0
+        max_retries = 2
+        backoff_initial_delay = 1
+        backoff_factor = 2
+        max_backoff = 60
 
-        except Exception as e:
-            logger.error(f"Error connecting to {peer_ip}:{port}. Error: {e}")
+        while attempt < max_retries:
+            try:
+                reader, writer = await asyncio.open_connection(peer_ip, port)
+                self.peer_connections[peer_ip] = (reader, writer)
+                logger.info(f"Node {self.port} connected to peer {peer_ip}:{port}")
+                return  # Exit the function after a successful connection
+            except Exception as e:
+                attempt += 1
+                logger.error(f"Attempt {attempt}: Error connecting to {peer_ip}:{port}. Error: {e}")
+                if attempt >= max_retries:
+                    logger.error(f"Max retries reached. Unable to connect to {peer_ip}:{port}.")
+                    break  # Exit the loop after max retries
+                backoff_delay = min(max_backoff, backoff_initial_delay * (backoff_factor ** attempt))
+                logger.info(f"Retrying in {backoff_delay} seconds...")
+                await asyncio.sleep(backoff_delay)
 
 async def main():
     # Node initialized with peers (replace with your IPs)
-    node = Server(8888, ['10.10.2.113'])
+    node = Server(8888, ['10.10.2.113','10.10.3.113'])
     await node.start_server()

@@ -1,6 +1,7 @@
 import asyncio
 
 import hashlib
+import base64
 
 
 class Chunker:
@@ -24,6 +25,7 @@ class Chunker:
 
         for i in range(self.n):
             chunk = self.data[i * chunk_size: (i + 1) * chunk_size]
+            chunk = base64.b64encode(chunk)
             self.chunks[i] = {
                 'INDEX': i,
                 'DATA': chunk,

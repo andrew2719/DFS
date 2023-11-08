@@ -26,12 +26,12 @@ class SelfHandle:
 
     async def read_look_up_table(self):
 
-        logger.info("reading the table")
+        logger.info("reading the data from the client...")
 
         self.data = await self.read_in_loop()
 
         # logger.info(self.table)
-        logger.info("table read, length of the table is : " + str(len(self.data)))
+        logger.info("data read, length of the data is : " + str(len(self.data)))
 
         self.hash = hashlib.sha256(self.data).hexdigest()
 
@@ -44,13 +44,7 @@ class SelfHandle:
         logger.info(further)
 
         if further == 'True':
-            logger.info('preparing look up table...')
-            try:
-                self.look_up_table, self.hash_table = await chunker.Chunker(self.data).chunker()  # dicts
-                logger.info('look up and hash table prepared')
-                return self.look_up_table, self.hash_table
-            except Exception as e:
-                logger.error(e)
+            return self.data
 
         else:
             return False
