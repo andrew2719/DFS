@@ -37,7 +37,7 @@ class DataDistributor:
 
         if hash == response_hash.decode():
             logger.info("from PeerHandler.py : Hash matched")
-            further = await write_in_loop("True".encode())
+            await write_in_loop("True".encode())
             save_status = await read_in_loop()
             save_status = json.loads(save_status.decode())
 
@@ -72,8 +72,10 @@ class DataDistributor:
                             try:
                                 size = len(chunk_info['DATA'])
                                 ack_received = await self.send_initial_ack(read_write_obj, size)
+                                logger.info("from PeerHandler.py : " + str(ack_received))
                                 if ack_received:
                                     sending_status,hash = await self.send_data_to_node(read_in_loop,write_in_loop, chunk_info['DATA'])
+
                                     if sending_status:
                                         chunk_info['SENT_TO'] = ip  # Record where the data was sent
                                         chunk_info['HASH'] = hash

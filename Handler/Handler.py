@@ -54,7 +54,7 @@ class Handle:
                 'status':False,
                 'extras':"Not enough space in the system"
             }
-            await self.read_write_obj.write_in_loop(json.dumps(response).encode())
+            await self.read_write_obj.write_in_loop(json.dumps(response).encode()) # need to change this because it continues to to the next block
 
         if self.request["type"] == "upload":
             self.file_object = FileObjector.FileObject(size)

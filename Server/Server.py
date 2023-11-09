@@ -8,6 +8,7 @@ import settings
 from Handler import Handler
 from Handler import SelfHandler
 from Handler import PeerHandler
+from Handler import Responses
 
 
 class Server:
@@ -76,9 +77,12 @@ class Server:
 
             handle = await handler.Handler()
 
-            writer.write(handle)
+            # writer.write(handle)
+            #
+            # await writer.drain()
 
-            await writer.drain()
+            await Responses.ReadWrite(reader,writer).write_in_loop(handle.encode())
+
 
 
     async def start_server(self):
