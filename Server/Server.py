@@ -115,6 +115,10 @@ class Server:
             try:
                 reader, writer = await asyncio.open_connection(peer_ip, port)
                 self.peer_connections[peer_ip] = (reader, writer)
+                initial = await reader.read(1024)
+                initial = initial.decode()
+                logger.info(initial)
+
                 logger.info(f"Node {self.port} connected to peer {peer_ip}:{port}")
                 return  # Exit the function after a successful connection
             except Exception as e:
