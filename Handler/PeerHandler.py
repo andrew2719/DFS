@@ -30,17 +30,17 @@ class DataDistributor:
         ack_received = json.loads(ack_received.decode())
         return ack_received['status']
 
-    async def send_data_to_node(self,read_in_loop,write_in_loop, data):
-        await write_in_loop(data)
+    async def send_data_to_node(self,read_write_obj, data):
+        await read_write_obj.write_in_loop(data)
 
-        response_hash = await read_in_loop()
+        response_hash = await read_write_obj.read_in_loop()
 
         hash = hashlib.sha256(data).hexdigest()
 
         if hash == response_hash.decode():
             logger.info("from PeerHandler.py : Hash matched")
-            await write_in_loop("True".encode())
-            save_status = await read_in_loop()
+            await read_write_obj.write_in_loop("True".encode())
+            save_status = await read_write_obj.read_in_loop()
             save_status = json.loads(save_status.decode())
 
             if save_status['status']==True:
@@ -69,15 +69,15 @@ class DataDistributor:
                         reader, writer = self.peers[ip]
                         logger.info(f"Sending chunk to node {ip}")
                         read_write_obj = Responses.ReadWrite(reader, writer)
-                        read_in_loop = Responses.ReadWrite(reader, writer).read_in_loop()
-                        write_in_loop = Responses.ReadWrite(reader, writer)
+                        # read_in_loop = Responses.ReadWrite(reader, writer).read_in_loop()
+                        # write_in_loop = Responses.ReadWrite(reader, writer)
                         for attempt in range(1, self.MAX_RETRIES + 1):
                             try:
                                 size = len(chunk_info['DATA'])
                                 ack_received = await self.send_initial_ack(read_write_obj, size)
                                 logger.info("from PeerHandler.py : " + str(ack_received))
                                 if ack_received:
-                                    sending_status,hash = await self.send_data_to_node(read_in_loop,write_in_loop, chunk_info['DATA'])
+                                    sending_status,hash = await self.send_data_to_node(read_write_obj, chunk_info['DATA'])
 
                                     if sending_status:
                                         chunk_info['SENT_TO'] = ip  # Record where the data was sent

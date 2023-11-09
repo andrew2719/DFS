@@ -66,6 +66,8 @@ class Handle:
             }
             logger.info("Sending the acknowledgment")
             await self.read_write_obj.write_in_loop(json.dumps(response).encode())
+            logger.info("Acknowledgment sent successfully, waiting for the data")
+
             result =  await self.HandleUpload()
             return result
 
