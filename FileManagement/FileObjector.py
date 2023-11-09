@@ -8,7 +8,7 @@ class FileObject:
         self.file_data = bytearray()
         self.file_size = file_size
         self.sent_from = None
-        self.storage_path = None
+        self.storage_path = RECEIVED_FILES
 
     async def add_data(self, data):
         self.file_data += data
@@ -16,10 +16,14 @@ class FileObject:
 
     async def save_file(self):
         # save to the system in the received_files folder that is from the RECEIVED_FILES
-        with open(RECEIVED_FILES + self.file_hash.hexdigest(), 'wb') as file:
+        # with open(RECEIVED_FILES + self.file_hash.hexdigest(), 'wb') as file:
+        #     file.write(self.file_data)
+        #     file.close()
+        # RECEIVED_FILES = os.path.join(DIR_PATH, 'received_files')
+    # save to the system in the received_files folder that is from the RECEIVED_FILES
+        with open(self.storage_path+self.file_hash.hexdigest(), 'wb') as file:
             file.write(self.file_data)
             file.close()
-
     async def save_(self):
 
         try:
