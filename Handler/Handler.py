@@ -62,7 +62,7 @@ class Handle:
 
             response = {
                 'status':True,
-                'extras':None
+                'extras':"None",
             }
             await self.read_write_obj.write_in_loop(json.dumps(response).encode())
             result =  await self.HandleUpload()

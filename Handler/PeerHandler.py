@@ -66,6 +66,7 @@ class DataDistributor:
                 try:
                     async with lock:
                         reader, writer = self.peers[ip]
+                        logger.info(f"Sending chunk to node {ip}")
                         read_write_obj = Responses.ReadWrite(reader, writer)
                         read_in_loop = Responses.ReadWrite(reader, writer).read_in_loop()
                         write_in_loop = Responses.ReadWrite(reader, writer)
@@ -82,7 +83,8 @@ class DataDistributor:
                                         chunk_info['HASH'] = hash
                                         return True  # Data was successfully sent
                             except Exception as e:
-                                print(f"Error sending data to node {ip} on attempt {attempt}: {e}")
+                                # print(f"Error sending data to node {ip} on attempt {attempt}: {e}")
+                                logger.error(f"Error sending data to node {ip} on attempt {attempt}: {e}")
                                 if attempt == self.MAX_RETRIES:
                                     nodes_tried.add(ip)  # Add to nodes tried after reaching max retries
                                     break  # Move to the next node after max retries
@@ -113,6 +115,7 @@ class DataDistributor:
 
     async def distribute(self, data):
         table, hash_table = await chunker.Chunker(data).chunker()
+        logger.info("from PeerHandler.py : " + str(table),str(hash_table))
         sent_status = await self.distribute_to_nodes(table)
         final_table = table
         return final_table,sent_status
