@@ -57,7 +57,7 @@ class Handle:
             }
             await self.read_write_obj.write_in_loop(json.dumps(response).encode()) # need to change this because it continues to to the next block
 
-        if self.request["TYPE"] == "upload":
+        if self.request["TYPE"] == "UPLOAD":
             self.file_object = FileObjector.FileObject(size)
 
             response = {
@@ -68,7 +68,7 @@ class Handle:
             result =  await self.HandleUpload()
             return result
 
-        elif self.request["type"] == "download":
+        elif self.request["TYPE"] == "download":
             pass
 
 
