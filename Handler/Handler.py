@@ -61,10 +61,10 @@ class Handle:
             self.file_object = FileObjector.FileObject(size)
 
             response = {
-                'status':True,
+                'status':"True",
                 'extras':"Nothing"
             }
-            logger.info("Sending the acknowledgment",json.dumps(response))
+            logger.info("Sending the acknowledgment")
             await self.read_write_obj.write_in_loop(json.dumps(response).encode())
             result =  await self.HandleUpload()
             return result
