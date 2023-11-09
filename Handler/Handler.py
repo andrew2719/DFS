@@ -34,8 +34,8 @@ class Handle:
     async def acknowledgment(self, bool,extras = None):
 
         response = {
-            'status':bool,
-            'extras':"None"
+            'status':str(bool),
+            'extras':"Nothing"
         }
 
         return JsonHandler.convert_dict_to_json(response)
@@ -52,7 +52,7 @@ class Handle:
             # ack = await self.acknowledgment(False,"Not enough space in the system")
             # await self.read_write_obj.write_in_loop(ack.encode())
             response = {
-                'status':False,
+                'status':"False",
                 'extras':"Not enough space in the system"
             }
             await self.read_write_obj.write_in_loop(json.dumps(response).encode()) # need to change this because it continues to to the next block
@@ -62,8 +62,9 @@ class Handle:
 
             response = {
                 'status':True,
-                'extras':"None",
+                'extras':"Nothing"
             }
+            logger.info("Sending the acknowledgment",json.dumps(response))
             await self.read_write_obj.write_in_loop(json.dumps(response).encode())
             result =  await self.HandleUpload()
             return result

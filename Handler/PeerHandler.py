@@ -26,6 +26,7 @@ class DataDistributor:
         await read_write_obj.write_(inital_ack)
 
         ack_received = await read_write_obj.read_in_loop()
+        logger.info("from PeerHandler.py ack is : " + str(ack_received))
         ack_received = json.loads(ack_received.decode())
         return ack_received['status']
 
