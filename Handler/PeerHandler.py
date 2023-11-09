@@ -18,8 +18,9 @@ class DataDistributor:
 
     async def send_initial_ack(self,read_write_obj,data):
         inital_ack = {
+            'NODE':'PEER',
             'TYPE': 'UPLOAD',
-            'size': data
+            'SIZE': data
         }
         inital_ack = json.dumps(inital_ack).encode()
         await read_write_obj.write_(inital_ack)

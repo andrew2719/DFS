@@ -35,16 +35,17 @@ class Handle:
 
         response = {
             'status':bool,
-            'extras':extras
+            'extras':"None"
         }
 
         return JsonHandler.convert_dict_to_json(response)
     async def Handler(self):
-        await self.conversion()
-        logger.info("Handling , request is : " + self.request)
+        # await self.conversion()
+        # self.request = json.loads(self.request)
+        logger.info("Handling , request is : " + str(self.request))
 
         # check for the storage for saving the file in the system
-        size = self.request["size"]
+        size = self.request["SIZE"]
         if size > FREE_SPACE:
             logger.error("Not enough space in the system")
 
@@ -56,7 +57,7 @@ class Handle:
             }
             await self.read_write_obj.write_in_loop(json.dumps(response).encode()) # need to change this because it continues to to the next block
 
-        if self.request["type"] == "upload":
+        if self.request["TYPE"] == "upload":
             self.file_object = FileObjector.FileObject(size)
 
             response = {
@@ -64,14 +65,15 @@ class Handle:
                 'extras':None
             }
             await self.read_write_obj.write_in_loop(json.dumps(response).encode())
-            return await self.HandleUpload()
+            result =  await self.HandleUpload()
+            return result
 
         elif self.request["type"] == "download":
             pass
 
 
     async def HandleUpload(self):
-        size = 0
+        # size = 0
         # reading the file 1024 bytes at a time
         data = await self.read_write_obj.read_in_loop()
 
