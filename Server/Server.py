@@ -133,5 +133,5 @@ class Server:
 
 async def main():
     # Node initialized with peers (replace with your IPs)
-    node = Server(8888, ['172.21.5.95'])
+    node = Server(8888, ['10.10.13.255'])
     await node.start_server()
