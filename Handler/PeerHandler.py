@@ -116,7 +116,10 @@ class DataDistributor:
 
     async def distribute(self, data):
         table, hash_table = await chunker.Chunker(data).chunker()
-        logger.info("from PeerHandler.py : " + str(table),str(hash_table))
+        # logger.info("from PeerHandler.py : " + str(table),str(hash_table))
+        # log the peers
+        # logger.info("from PeerHandler.py : " + str(self.peers))
+
         sent_status = await self.distribute_to_nodes(table)
         final_table = table
         return final_table,sent_status
